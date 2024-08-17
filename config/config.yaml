@@ -3,5 +3,7 @@ artifacts_root: artifacts
 data_ingestion:
   root_dir: artifacts/data_ingestion
   source_URL: https://www.kaggle.com/datasets/allandclive/chicken-disease-1
-  local_data_file: artifacts/data_ingestion/data.zip
-  unzip_dir: artifacts/data_ingection
+  local_data_file: artifacts/data_ingestion/chicken-disease-1.zip
+  unzip_dir: artifacts/data_ingestion
+  api_file: /Users/yashlucky/Code/API-stuff/kaggle.json
+  dataset: allandclive/chicken-disease-1
