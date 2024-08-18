@@ -7,3 +7,8 @@ data_ingestion:
   unzip_dir: artifacts/data_ingestion
   api_file: /Users/yashlucky/Code/API-stuff/kaggle.json
   dataset: allandclive/chicken-disease-1
+
+prepare_base_model:
+  root_dir: artifacts/prepare_base_model
+  base_model_path: artifacts/prepare_base_model/base_model.h5
+  updated_base_model_path: artifacts/prepare_base_model/base_model_updates.h5
