@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from src.cdclassifier import logger
+from cdclassifier import logger
 import json
 import joblib
 from ensure import ensure_annotations
@@ -9,6 +9,8 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
+import shutil
+
 
 
 @ensure_annotations
@@ -63,7 +65,6 @@ def save_json(path: Path, data: dict):
         json.dump(data, f, indent=4)
 
     logger.info(f"json file saved at: {path}")
-
 
 
 
@@ -134,3 +135,45 @@ def decodeImage(imgstring, fileName):
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())
+
+
+def get_dataset(secret_dir: Path, dataset: str, dataset_path: Path = None)->None:
+    """load dataset by using the kaggle api 
+
+    Args:
+        secret_dir (Path): path to kaggle.json file
+        dataset (str): dataset to download, format: [owner]/[dataset_name]
+        dataset_path: Path to download the dataset to 
+
+
+    Returns:
+        Path: zip file of the dataset
+    """
+
+    # SECRET_DIR = secret_dir
+    # DATASET = dataset
+    
+    DATASET_PATH, _ = os.path.split(dataset_path)
+
+    # Finding root directory
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    
+    DIRECTORY = ".kaggle"
+    PATH = os.path.join(ROOT_DIR, DIRECTORY)
+
+    # checking if path already exist
+    os.makedirs(PATH,exist_ok=True)
+
+    KAGGLE_PATH = os.path.join(PATH, 'kaggle.json')
+    shutil.copy(secret_dir, KAGGLE_PATH)
+
+    os.environ['KAGGLE_CONFIG_DIR'] = PATH
+    print(os.environ['KAGGLE_CONFIG_DIR'])
+    # os.chmod(PATH, 0o600)
+
+    import kaggle
+    api = kaggle.api
+
+    # # downloading dataset in zip format
+    api.dataset_download_files(dataset=dataset, path=DATASET_PATH)
+    
