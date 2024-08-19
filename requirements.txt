@@ -1,7 +1,7 @@
 tensorflow
-tensorflow-metal
-tf-nightl
-keras-nightly
+# tf-nightl
+# keras-nightly
+# tensorflow-metal
 pandas
 numpy
 dvc
