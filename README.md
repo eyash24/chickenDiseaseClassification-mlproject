@@ -89,7 +89,7 @@ open up you local host and port
 
 	
 ## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/chicken
+    - Save the URI: 654654583063.dkr.ecr.eu-north-1.amazonaws.com/mlprojects/chicken-disease-classification
 
 	
 ## 4. Create EC2 machine (Ubuntu) 
