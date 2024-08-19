@@ -163,3 +163,4 @@ cython_debug/
 
 .kaggle/*
 artifacts/*
+artifacts_V1/*

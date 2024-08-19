@@ -12,7 +12,19 @@
 9. update dvc.yaml
 
 ## Running Tensorboard 
-tensorboard --logdir artifacts/prepare_callbacks/tensorboard_log_dir/
+Run the below command in terminal to view Tensorboard
+`tensorboard --logdir artifacts/prepare_callbacks/tensorboard_log_dir/`
+If Tensorboard is throwing an error, create a new environment and install tensorflow. After that run the above command
 
 
 ## pip install keras-nighlty
+
+## DVC
+Run the following after cloning the repository
+```
+dvc init
+dvc repro
+```
+
+The below command will return a DAG of dependency graph between all the stages of the pipeline
+`dvc dag`
