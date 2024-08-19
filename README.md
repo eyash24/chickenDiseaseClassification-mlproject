@@ -10,3 +10,9 @@
 7. update the pipeline
 8. update main.py
 9. update dvc.yaml
+
+## Running Tensorboard 
+tensorboard --logdir artifacts/prepare_callbacks/tensorboard_log_dir/
+
+
+## pip install keras-nighlty

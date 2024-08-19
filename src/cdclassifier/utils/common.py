@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 import base64
 import shutil
-
+import pickle
 
 
 @ensure_annotations
@@ -176,4 +176,24 @@ def get_dataset(secret_dir: Path, dataset: str, dataset_path: Path = None)->None
 
     # # downloading dataset in zip format
     api.dataset_download_files(dataset=dataset, path=DATASET_PATH)
-    
+
+def save_object(file_path, obj):
+    try:
+        dir_path = os.path.dirname(file_path)
+
+        os.makedirs(dir_path, exist_ok=True)
+
+        with open(file_path, "wb") as file_obj:
+            pickle.dump(obj, file_obj)
+
+    except Exception as e:
+
+        raise e
+
+def load_object(file_path):
+    try:
+        with open(file_path, 'rb') as file_obj:
+            return pickle.load(file_obj)
+        
+    except Exception as e:
+        raise e

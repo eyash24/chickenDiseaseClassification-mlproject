@@ -1,6 +1,7 @@
 import tensorflow as tf
 from cdclassifier.entity.config_entity import PrepareBaseModelConfig
 from pathlib import Path
+from cdclassifier.utils.common import save_object
 
 class PrepareBaseModel:
     def __init__(self, config: PrepareBaseModelConfig):
@@ -27,7 +28,7 @@ class PrepareBaseModel:
         flatten_in = tf.keras.layers.Flatten()(model.output)
         prediction = tf.keras.layers.Dense(
             units=classes,
-            activation="softmax"
+            activation="sigmoid"
         )(flatten_in)
 
         full_model = tf.keras.models.Model(
@@ -36,8 +37,9 @@ class PrepareBaseModel:
         )
 
         full_model.compile(
-            optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
-            loss=tf.keras.losses.CategoricalCrossentropy(),
+            optimizer=tf.keras.optimizers.RMSprop(learning_rate=learning_rate),
+            # optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
+            loss="binary_crossentropy",
             metrics=['accuracy']
         )
 
@@ -58,3 +60,5 @@ class PrepareBaseModel:
     @staticmethod
     def save_model(path:Path, model:tf.keras.Model):
         model.save(path)
+        # model.export(path)
+        # save_object(file_path=path, obj=model)

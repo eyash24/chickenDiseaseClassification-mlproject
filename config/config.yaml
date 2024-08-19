@@ -8,6 +8,7 @@ data_ingestion:
   api_file: /Users/yashlucky/Code/API-stuff/kaggle.json
   dataset: allandclive/chicken-disease-1
 
+
 prepare_base_model:
   root_dir: artifacts/prepare_base_model
   base_model_path: artifacts/prepare_base_model/base_model.h5
@@ -18,3 +19,14 @@ prepare_callbacks:
   root_dir: artifacts/prepare_callbacks
   tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_log_dir
   checkpoint_model_file_path: artifacts/prepare_callbacks/checkpoint_dir/model.h5
+
+
+training:
+  root_dir: artifacts/training
+  trained_model_path: artifacts/training/model.h5
+
+model_evaluation:
+  root_dir: artifacts/training
+  training_data: artifacts/data_ingestion/Train
+  training_dataframe_path: artifacts/data_ingestion/train_data.csv
+  trained_model_path:  artifacts/training/model.h5
